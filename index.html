@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>To-do List App</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="todo-app">
+                <h2>Todos</h2>
+                <form action="">
+                    <div id="new-task">
+                        <input class="todo-input" type="text" id="input-box" placeholder="Nhập công việc tại đây">
+                        <button class="todo-button" type="submit" id="push">Lưu lại</button>
+                    </div>
+                    <div class="todo-select">
+                        <select class="filter-todo">
+                            <option value="all">Tất cả</option>
+                            <option value="completed">Hoàn thành</option>
+                            <option value="incomplete">Chưa hoàn thành</option>
+                        </select>
+                    </div>
+                </form>
+                <div id="tasks"></div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
