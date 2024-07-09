@@ -7,12 +7,6 @@
     background-color: #0b87ff;
 }
 .container {
-    /* width: 90%;
-    max-width: 34em;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%; */
     width: 100%;
     min-height: 100vh;
     background-color: #ccc;
@@ -23,7 +17,7 @@
     max-width: 540px;
     background: #fff;
     margin: 100px auto 20px;
-    padding: 40px 30px 70px;
+    padding: 40px 30px;
     border-radius: 10px;
 }
 .todo-app h2 {
@@ -56,23 +50,21 @@
     border: none;
     outline: none;
     padding: 16px 50px;
-    background: green;
+    background: #0bdd00;
     font-size: 16px;
     cursor: pointer;
     border-radius: 0 30px 30px 0;
 }
-todo-select select {
+.todo-select select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     outline: none;
-    border: none;
 }
 .todo-select {
     margin-bottom: 1rem;
     position: relative;
     overflow: hidden;
-    /* border-radius: 30px; */
 }
 .filter-todo {
     color: #000;
@@ -103,16 +95,14 @@ todo-select select {
 #tasks {
     background-color: #ffffff;
     position: relative;
-    padding: 1.8em 1.25em;
-    margin-top: 3.8em;
+    padding: 1.8rem 1.25rem;
+    margin-top: 1rem;
     width: 100%;
-    box-shadow: 0 1.25em 1.8em rgba(1, 24, 48, 0.15);
-    border-radius: 0.6em;
 }
 .task {
     background-color: #ffffff;
-    padding: 0.3em 0.6em;
-    margin-top: 0.6em;
+    padding: 0.3rem 0.6rem;
+    margin-top: 1rem;
     display: flex;
     align-items: center;
     border-bottom: 2px solid #d1d3d4;
@@ -120,14 +110,14 @@ todo-select select {
 }
 .task span {
     font-family: "Poppins", sans-serif;
-    font-size: 0.9em;
+    font-size: 0.9rem;
     font-weight: 400;
+    margin-left: 2rem;
 }
 .task button {
     color: #ffffff;
-    padding: 0.8em 0;
-    width: 2.8em;
-    border-radius: 0.3em;
+    padding: 0.8rem 0.8rem;
+    border-radius: 0.3rem;
     border: none;
     outline: none;
     cursor: pointer;
@@ -138,8 +128,22 @@ todo-select select {
 .edit {
     background-color: #0b87ff;
     margin-left: auto;
-    margin-right: 3em;
+    margin-right: 1.5rem;
 }
 .completed {
     text-decoration: line-through;
+}
+div.task::before {
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url(images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    left: 8px;
+}
+div.completed::before {
+    background-image: url(images/checked.png)
 }
