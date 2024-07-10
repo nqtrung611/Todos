@@ -30,17 +30,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ccc;
-    border-radius: 30px;
-    padding-left: 20px;
     margin-bottom: 25px;
 }
 .todo-input {
-    flex: 1;
     border: none;
     outline: none;
     background: transparent;
     padding: 10px;
+    padding: 16px 26px;
+    background: #ccc;
+    width: 65%;
+    border-radius: 30px;
 }
 #new-task input:focus {
     outline: none;
@@ -53,7 +53,7 @@
     background: #0bdd00;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 0 30px 30px 0;
+    border-radius: 30px;
 }
 .todo-select select {
     -webkit-appearance: none;
@@ -77,7 +77,6 @@
 .todo-select::after {
     content: "\25BC";
     position: absolute;
-    background:rgb(255, 200, 0);
     top: 0;
     right: 50%;
     pointer-events: none;
@@ -98,6 +97,8 @@
     padding: 1.8rem 1.25rem;
     margin-top: 1rem;
     width: 100%;
+    max-height: 28rem;
+    overflow-y: scroll;
 }
 .task {
     background-color: #ffffff;
