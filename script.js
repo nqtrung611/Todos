@@ -1,5 +1,5 @@
 const newTaskInput = document.querySelector("#new-task input");
-const tasksDiv = document.querySelector("#tasks");
+const listTasks = document.querySelector("#tasks");
 let deleteTasks, editTasks, tasks;
 let updateNote = "";
 let count;
@@ -14,13 +14,13 @@ window.onload = () => {
 //Hiển thị task từ local storage
 const displayTasks = () => {
     if (Object.keys(localStorage).length > 0) {
-        tasksDiv.style.display = "inline-block";
+        listTasks.style.display = "inline-block";
     } else {
-    tasksDiv.style.display = "none";
+    listTasks.style.display = "none";
     }
 
     //Clear the tasks
-    tasksDiv.innerHTML = "";
+    listTasks.innerHTML = "";
 
     //Fetch All The Keys in local storage
     let tasks = Object.keys(localStorage);
@@ -31,10 +31,10 @@ const displayTasks = () => {
 
         //Lấy tất cả giá trị trong local storage
         let value = localStorage.getItem(key);
-        let taskInnerDiv = document.createElement("div");
-        taskInnerDiv.classList.add("task");
-        taskInnerDiv.setAttribute("id", key);
-        taskInnerDiv.innerHTML = `<span id="taskname">${key.split("_")[1]}</span>`;
+        let innerTask = document.createElement("div");
+        innerTask.classList.add("task");
+        innerTask.setAttribute("id", key);
+        innerTask.innerHTML = `<span id="taskname">${key.split("_")[1]}</span>`;
         //localstorage would store boolean as string so we parse it to boolean back
         let editButton = document.createElement("button");
         editButton.classList.add("edit");
@@ -43,11 +43,11 @@ const displayTasks = () => {
             editButton.style.visibility = "visible";
         } else {
             editButton.style.visibility = "hidden";
-            taskInnerDiv.classList.add("completed");
+            innerTask.classList.add("completed");
         }
-        taskInnerDiv.appendChild(editButton);
-        taskInnerDiv.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
-        tasksDiv.appendChild(taskInnerDiv);
+        innerTask.appendChild(editButton);
+        innerTask.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
+        listTasks.appendChild(innerTask);
     }
 
     //Completed task(Click vào task sẽ hoàn thành và ngược lại)
@@ -143,7 +143,7 @@ const filterOption = document.querySelector(".filter-todo");
 filterOption.addEventListener("change", filterTodo);
 
 function filterTodo(e) {
-    const todos = tasksDiv.childNodes;
+    const todos = listTasks.childNodes;
     todos.forEach(function(todo) {
         switch(e.target.value) {
             case "all": 
