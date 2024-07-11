@@ -1,4 +1,3 @@
-//Initial References
 const newTaskInput = document.querySelector("#new-task input");
 const tasksDiv = document.querySelector("#tasks");
 let deleteTasks, editTasks, tasks;
@@ -12,7 +11,7 @@ window.onload = () => {
     displayTasks();
 };
 
-//Function to Display The Tasks
+//Hiển thị task từ local storage
 const displayTasks = () => {
     if (Object.keys(localStorage).length > 0) {
         tasksDiv.style.display = "inline-block";
@@ -30,7 +29,7 @@ const displayTasks = () => {
     for (let key of tasks) {
         let classValue = "";
 
-        //Get all values
+        //Lấy tất cả giá trị trong local storage
         let value = localStorage.getItem(key);
         let taskInnerDiv = document.createElement("div");
         taskInnerDiv.classList.add("task");
@@ -51,11 +50,11 @@ const displayTasks = () => {
         tasksDiv.appendChild(taskInnerDiv);
     }
 
-    //tasks completed
+    //Completed task(Click vào task sẽ hoàn thành và ngược lại)
     tasks = document.querySelectorAll(".task");
     tasks.forEach((element, index) => {
         element.onclick = () => {
-        //local storage update
+        //Cập nhật trạng thái trong local storage
             if (element.classList.contains("completed")) {
                 updateStorage(element.id.split("_")[0], element.innerText, false);
             } else {
@@ -64,30 +63,30 @@ const displayTasks = () => {
         };
     });
 
-    //Edit Tasks
+    //Cập nhật task
     editTasks = document.getElementsByClassName("edit");
     Array.from(editTasks).forEach((element, index) => {
         element.addEventListener("click", (e) => {
         //Stop propogation to outer elements (if removed when we click delete eventually rhw click will move to parent)
         e.stopPropagation();
-        //disable other edit buttons when one task is being edited
+        //Ẩn nút chỉnh sửa
         disableButtons(true);
-        //update input value and remove div
+        //Lấy nội dung task đẩy lên ô input và xóa task
         let parent = element.parentElement;
         newTaskInput.value = parent.querySelector("#taskname").innerText;
-        //set updateNote to the task that is being edited
+        //Đặt updateNote để cập nhật task
         updateNote = parent.id;
-        //remove task
+        //xóa task
         parent.remove();
         });
     });
 
-    //Delete Tasks
+    //Xóa task hiển thị và ở local storage
     deleteTasks = document.getElementsByClassName("delete");
     Array.from(deleteTasks).forEach((element, index) => {
         element.addEventListener("click", (e) => {
             e.stopPropagation();
-            //Delete from local storage and remove div
+            //Xóa task ở local storage và xóa thẻ div hiển thị
             let parent = element.parentElement;
             removeTask(parent.id);
             parent.remove();
@@ -96,7 +95,7 @@ const displayTasks = () => {
     });
 };
 
-//Disable Edit Button
+//Ẩn-hiện nút chỉnh sửa khi hoàn thành task
 const disableButtons = (bool) => {
     let editButtons = document.getElementsByClassName("edit");
     Array.from(editButtons).forEach((element) => {
@@ -104,34 +103,33 @@ const disableButtons = (bool) => {
     });
 };
 
-//Remove Task from local storage
+//Xóa task ở local storage
 const removeTask = (taskValue) => {
     localStorage.removeItem(taskValue);
     displayTasks();
 };
 
-//Add tasks to local storage
+//Thêm task vào local storage
 const updateStorage = (index, taskValue, completed) => {
     localStorage.setItem(`${index}_${taskValue}`, completed);
     displayTasks();
 };
 
-//Function To Add New Task
+//Thêm mới, cập nhật task vào local storage
 document.querySelector("#push").addEventListener("click", () => {
-    //Enable the edit button
+    //Hiện thị nút chỉnh sửa
     disableButtons(false);
     if (newTaskInput.value.length == 0) {
         alert("Vui lòng nhập công việc");
     } else {
-        //Store locally and display from local storage
     if (updateNote == "") {
-        //new task
+        //Thêm task mới
         updateStorage(count, newTaskInput.value, false);
     } else {
-        //update task
-        let existingCount = updateNote.split("_")[0];
+        //Cập nhật task
+        let index = updateNote.split("_")[0];
         removeTask(updateNote);
-        updateStorage(existingCount, newTaskInput.value, false);
+        updateStorage(index, newTaskInput.value, false);
         updateNote = "";
     }
     count += 1;
@@ -140,7 +138,7 @@ document.querySelector("#push").addEventListener("click", () => {
 });
 
 
-//Button select task
+//Button select task (Tất cả, hoàn thành, chưa hoàn thành)
 const filterOption = document.querySelector(".filter-todo");
 filterOption.addEventListener("change", filterTodo);
 
