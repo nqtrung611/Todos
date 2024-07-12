@@ -48,11 +48,6 @@ const displayTasks = () => {
         innerTask.appendChild(editButton);
         innerTask.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
         listTasks.appendChild(innerTask);
-        if (listTasks.offsetHeight < 448) {
-            listTasks.style.overflow = "unset";
-        } else {
-            listTasks.style.overflow = "scroll";
-        }
     }
 
     //Completed task(Click vào task sẽ hoàn thành và ngược lại)
@@ -111,7 +106,7 @@ const disableButtons = (bool) => {
 //Xóa task ở local storage
 const removeTask = (taskValue) => {
     localStorage.removeItem(taskValue);
-    displayTasks();
+    // displayTasks();
 };
 
 //Thêm task vào local storage
@@ -150,17 +145,17 @@ const btnOptions = document.querySelectorAll(".btn-option");
 
 function filterTodo(e) {
     btnOptions.forEach(function(btnOption) {
-        btnOption.removeAttribute("style");
+        btnOption.classList.remove("active");
     });
     const todos = listTasks.childNodes;
     todos.forEach(function(todo) {
         switch(e.target.value) {
             case "all":
-                e.target.style.background = "#ccc"; 
+                e.target.classList.add("active");
                 todo.style.display = "flex";
                 break;
             case "completed":
-                e.target.style.background = "#ccc"; 
+                e.target.classList.add("active");
                 if(todo.classList.contains("completed")) {
                     todo.style.display = "flex";
                 } else {
@@ -168,7 +163,7 @@ function filterTodo(e) {
                 }
                 break;
             case "incomplete":
-                e.target.style.background = "#ccc";
+                e.target.classList.add("active");
                 if(!todo.classList.contains("completed")) {
                     todo.style.display = "flex";
                 } else {
