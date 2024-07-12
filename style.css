@@ -39,7 +39,7 @@
     padding: 10px;
     padding: 16px 26px;
     background: #ccc;
-    width: 65%;
+    width: 75%;
     border-radius: 30px;
 }
 #new-task input:focus {
@@ -49,11 +49,12 @@
 .todo-button {
     border: none;
     outline: none;
-    padding: 16px 50px;
+    padding: 16px 18px;
     background: #0bdd00;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 30px;
+    border-radius: 50%;
+    margin-right: 16px;
 }
 .todo-select select {
     -webkit-appearance: none;
