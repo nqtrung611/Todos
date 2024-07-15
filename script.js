@@ -338,6 +338,7 @@ filterOption.addEventListener("click", filterTodo);
 const btnOptions = document.querySelectorAll(".btn-option");
 
 function filterTodo(e) {
+    e.preventDefault();
     btnOptions.forEach(function(btnOption) {
         btnOption.classList.remove("active");
     });
@@ -347,6 +348,7 @@ function filterTodo(e) {
             case "all":
                 e.target.classList.add("active");
                 todo.style.display = "flex";
+                console.log("all");
                 break;
             case "completed":
                 e.target.classList.add("active");
@@ -355,6 +357,7 @@ function filterTodo(e) {
                 } else {
                     todo.style.display = "none";
                 }
+                console.log("completed");
                 break;
             case "incomplete":
                 e.target.classList.add("active");
@@ -363,6 +366,7 @@ function filterTodo(e) {
                 } else {
                     todo.style.display = "none";
                 }
+                console.log("incompleted");
                 break;
         }
     });

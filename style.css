@@ -74,17 +74,18 @@
     height: 50px;
     border-radius: 30px;
 }
-.filter-todo option {
+.filter-todo button {
     cursor: pointer;
     padding: 10px 20px;
     align-content: center;
     border-radius: 25px;
+    border: none;
 }
-.filter-todo option:hover {
-    background: #ccc;
+.filter-todo button:hover {
+    background: #2cee32;
 }
-.filter-todo option.active {
-    background: #ccc;
+.filter-todo button.active {
+    background: #2cee32;
 }
 #tasks {
     background-color: #ffffff;
@@ -92,7 +93,6 @@
     padding: 0 1.25rem;
     margin-top: 1rem;
     width: 100%;
-    /* max-height: 28rem; */
 }
 .task {
     background-color: #ffffff;
