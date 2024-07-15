@@ -72,12 +72,12 @@
     color: #000;
     display: flex;
     justify-content: space-around;
-    height: 50px;
+    height: 2rem;
     border-radius: 30px;
 }
 .filter-todo button {
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 0 1.5rem;
     align-content: center;
     border-radius: 25px;
     border: none;
@@ -141,5 +141,5 @@ div.task::before {
     left: 8px;
 }
 div.completed::before {
-    background-image: url(images/checked.png)
+    background-image: url(images/checked1.png)
 }
