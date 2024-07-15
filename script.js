@@ -105,6 +105,28 @@ const displayTasks = () => {
             // count -= 1;
         });
     });
+    const checkbtn = document.querySelector("button.active");
+    tasks.forEach(function(todo) {
+        switch(checkbtn.value) {
+            case "all":
+                todo.style.display = "flex";
+                break;
+            case "completed":
+                if(todo.classList.contains("completed")) {
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break;
+            case "incomplete":
+                if(!todo.classList.contains("completed")) {
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break;
+        }
+    });
 };
 
 //Ẩn-hiện nút chỉnh sửa khi hoàn thành task
