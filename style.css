@@ -107,7 +107,7 @@
 .task span {
     font-family: "Poppins", sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 500;
     margin-left: 2rem;
 }
 .task button {
@@ -126,8 +126,9 @@
     margin-left: auto;
     margin-right: 1.5rem;
 }
-.completed {
+.completed span {
     text-decoration: line-through;
+    opacity: 0.4;
 }
 div.task::before {
     content: '';
