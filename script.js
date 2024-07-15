@@ -334,7 +334,7 @@ document.querySelector("#push").addEventListener("click", () => {
 
 //Button select task (Tất cả, hoàn thành, chưa hoàn thành)
 const filterOption = document.querySelector(".filter-todo");
-filterOption.addEventListener("change", filterTodo);
+filterOption.addEventListener("click", filterTodo);
 const btnOptions = document.querySelectorAll(".btn-option");
 
 function filterTodo(e) {
