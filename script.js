@@ -146,7 +146,7 @@ const removeTask = (taskValue) => {
 //Thêm task vào local storage
 const updateStorage = (index, taskValue, completed) => {
     localStorage.setItem(`${index}`, `${completed}_${taskValue}`);
-    displayTasks();
+    // displayTasks();
 };
 
 //Thêm mới, cập nhật task vào local storage
