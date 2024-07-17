@@ -151,6 +151,7 @@ div.completed::before {
     border: none;
     outline: none;
     width: 100%;
+    margin-right: 1.5rem;
 }
 #popup {
     position: fixed;
@@ -166,7 +167,7 @@ div.completed::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: #ccc;
     padding: 20px;
     border: 1px solid #ccc;
     z-index: 1000;
@@ -174,10 +175,12 @@ div.completed::before {
     height: 100px;
     text-align: center;
     align-content: center;
+    border-radius: 20px;
 }
 #confirm_popup p {
     padding-bottom: 1rem;
 }
 #confirm_popup button {
     margin: 0 1rem;
+    padding: 0.25rem;
 }

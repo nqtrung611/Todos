@@ -76,7 +76,13 @@ const displayTasks = () => {
         const textElement = element.parentElement.firstChild;
         element.addEventListener("click", (e) => {
             e.stopPropagation();
-            disableButtons(true);
+            // disableButtons(true);
+            element.innerHTML = 'Save';
+            element.style.cssText = `
+                background: #0bdd00;
+                color: #000;
+            `
+            element.parentElement.querySelector(".delete").remove();
             const inputElement = document.createElement('input');
             inputElement.type = 'text';
             inputElement.value = textElement.textContent;
