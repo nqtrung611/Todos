@@ -86,15 +86,26 @@ const displayTasks = () => {
             const inputElement = document.createElement('input');
             inputElement.type = 'text';
             inputElement.value = textElement.textContent;
+            const textEdit = textElement.textContent;
             textElement.parentNode.replaceChild(inputElement, textElement);
             inputElement.focus();
             inputElement.addEventListener('keypress', function(event) {
                 if (event.key === 'Enter') {
-                    updateStorage(element.parentElement.id, inputElement.value, false);
+                    if (inputElement.value.length ==0) {
+                        alert("Vui lòng nhập công việc");
+                        updateStorage(element.parentElement.id, textEdit, false);
+                    } else {
+                        updateStorage(element.parentElement.id, inputElement.value, false);
+                    }
                 }
             });
             inputElement.addEventListener('blur', function() {
-                updateStorage(element.parentElement.id, inputElement.value, false);
+                if (inputElement.value.length ==0) {
+                    alert("Vui lòng nhập công việc");
+                    updateStorage(element.parentElement.id, textEdit, false);
+                } else {
+                    updateStorage(element.parentElement.id, inputElement.value, false);
+                }
             });
         });
     });
@@ -200,12 +211,6 @@ document.querySelector("#push").addEventListener("click", () => {
     if (updateNote == "") {
         //Thêm task mới
         updateStorage(count, newTaskInput.value, false);
-    } else {
-        //Cập nhật task
-        let index = updateNote.split("_")[0];
-        removeTask(updateNote);
-        updateStorage(index, newTaskInput.value, false);
-        updateNote = "";
     }
     count += 1;
     newTaskInput.value = "";
