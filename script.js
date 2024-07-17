@@ -73,23 +73,23 @@ const displayTasks = () => {
     //Cập nhật task
     editTasks = document.getElementsByClassName("edit");
     Array.from(editTasks).forEach((element, index) => {
+        const textElement = element.parentElement.firstChild;
         element.addEventListener("click", (e) => {
-            //Stop propogation to outer elements (if removed when we click delete eventually rhw click will move to parent)
             e.stopPropagation();
-            //Ẩn nút chỉnh sửa
             disableButtons(true);
-            //Lấy nội dung task đẩy lên ô input và xóa task
-            let parent = element.parentElement;
-            newTaskInput.value = parent.querySelector("#taskname").innerText;
-            //Đặt updateNote để cập nhật task
-            updateNote = parent.id;
-            //xóa task
-            parent.remove();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            const inputElement = document.createElement('input');
+            inputElement.type = 'text';
+            inputElement.value = textElement.textContent;
+            textElement.parentNode.replaceChild(inputElement, textElement);
+            inputElement.focus();
+            inputElement.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    updateStorage(element.parentElement.id, inputElement.value, false);
+                }
             });
-            newTaskInput.focus();
+            inputElement.addEventListener('blur', function() {
+                updateStorage(element.parentElement.id, inputElement.value, false);
+            });
         });
     });
 
