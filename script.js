@@ -54,13 +54,15 @@ const displayTasks = () => {
         }
         innerTask.appendChild(editButton);
         innerTask.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
+        innerTask.innerHTML += `<img src="./images/unchecked.png" alt="">`;
         listTasks.appendChild(innerTask);
     }
 
     //Completed task(Click vào task sẽ hoàn thành và ngược lại)
     tasks = document.querySelectorAll(".task");
     tasks.forEach((element, index) => {
-        element.onclick = () => {
+        const btnCompleted = element.querySelector("img");
+        btnCompleted.onclick = () => {
         //Cập nhật trạng thái trong local storage
             if (element.classList.contains("completed")) {
                 updateStorage(element.id.split("_")[0], element.innerText, false);
@@ -99,14 +101,14 @@ const displayTasks = () => {
                     }
                 }
             });
-            inputElement.addEventListener('blur', function() {
-                if (inputElement.value.length ==0) {
-                    alert("Vui lòng nhập công việc");
-                    updateStorage(element.parentElement.id, textEdit, false);
-                } else {
-                    updateStorage(element.parentElement.id, inputElement.value, false);
-                }
-            });
+            // inputElement.addEventListener('blur', function() {
+            //     if (inputElement.value.length ==0) {
+            //         alert("Vui lòng nhập công việc");
+            //         updateStorage(element.parentElement.id, textEdit, false);
+            //     } else {
+            //         updateStorage(element.parentElement.id, inputElement.value, false);
+            //     }
+            // });
         });
     });
 
