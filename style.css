@@ -152,3 +152,32 @@ div.completed::before {
     outline: none;
     width: 100%;
 }
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 999;
+}
+#confirm_popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    align-content: center;
+}
+#confirm_popup p {
+    padding-bottom: 1rem;
+}
+#confirm_popup button {
+    margin: 0 1rem;
+}

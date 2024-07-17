@@ -101,7 +101,7 @@ const displayTasks = () => {
             //Xóa task ở local storage và xóa thẻ div hiển thị
             let parent = element.parentElement;
             removeTask(parent.id);
-            parent.remove();
+            // parent.remove();
             // count -= 1;
         });
     });
@@ -139,8 +139,43 @@ const disableButtons = (bool) => {
 
 //Xóa task ở local storage
 const removeTask = (taskValue) => {
-    localStorage.removeItem(taskValue);
-    // displayTasks();
+    const popup = document.createElement('div');
+    popup.id = 'popup';
+
+    const confirm_popup = document.createElement('div');
+    confirm_popup.id = 'confirm_popup';
+    
+    const message = document.createElement('p');
+    message.textContent = 'Bạn có muốn xóa?';
+    confirm_popup.appendChild(message);
+    
+    const yesButton = document.createElement('button');
+    yesButton.textContent = 'Có';
+    yesButton.addEventListener('click', function() {
+        localStorage.removeItem(taskValue);
+        displayTasks();
+        popup.parentNode.removeChild(popup);
+    });
+    confirm_popup.appendChild(yesButton);
+    
+    const noButton = document.createElement('button');
+    noButton.textContent = 'Không';
+    noButton.addEventListener('click', function() {
+        popup.parentNode.removeChild(popup);
+    });
+    confirm_popup.appendChild(noButton);
+    popup.appendChild(confirm_popup);
+    document.body.appendChild(popup);
+    document.addEventListener('click', function(event) {
+        if (event.target === popup) {
+            popup.parentNode.removeChild(popup);
+        }
+    });
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            popup.parentNode.removeChild(popup);
+        }
+    });
 };
 
 //Thêm task vào local storage
