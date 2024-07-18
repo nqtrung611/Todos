@@ -1,12 +1,10 @@
 const newTaskInput = document.querySelector("#new-task input");
 const listTasks = document.querySelector("#tasks");
 let deleteTasks, editTasks, tasks;
-let updateNote = "";
 let count;
 
 //Function on window load
 window.onload = () => {
-    updateNote = "";
     let tong = Object.keys(localStorage);
     const max = tong.length;
     tong = tong.sort(function(a, b){return a-b});
@@ -84,21 +82,32 @@ const displayTasks = () => {
                 background: #0bdd00;
                 color: #000;
             `
+            const textEdit = textElement.textContent;
             element.parentElement.querySelector(".delete").remove();
+            element.parentElement.querySelector("img").remove();
             const inputElement = document.createElement('input');
             inputElement.type = 'text';
             inputElement.value = textElement.textContent;
-            const textEdit = textElement.textContent;
             textElement.parentNode.replaceChild(inputElement, textElement);
             inputElement.focus();
             inputElement.addEventListener('keypress', function(event) {
                 if (event.key === 'Enter') {
-                    if (inputElement.value.length ==0) {
+                    if (inputElement.value.trim() === '') {
                         alert("Vui lòng nhập công việc");
-                        updateStorage(element.parentElement.id, textEdit, false);
+                        inputElement.focus();
+                        // updateStorage(element.parentElement.id, textEdit, false);
                     } else {
-                        updateStorage(element.parentElement.id, inputElement.value, false);
+                        updateStorage(element.parentElement.id, inputElement.value.trim(), false);
                     }
+                }
+            });
+            element.addEventListener('click', function() {
+                if (inputElement.value.trim() === '') {
+                    alert("Vui lòng nhập công việc");
+                    inputElement.focus();
+                    // updateStorage(element.parentElement.id, textEdit, false);
+                } else {
+                    updateStorage(element.parentElement.id, inputElement.value.trim(), false);
                 }
             });
             // inputElement.addEventListener('blur', function() {
@@ -119,7 +128,7 @@ const displayTasks = () => {
             e.stopPropagation();
             //Xóa task ở local storage và xóa thẻ div hiển thị
             let parent = element.parentElement;
-            removeTask(parent.id);
+            removeTask(parent.id, parent.firstChild);
             // parent.remove();
             // count -= 1;
         });
@@ -157,7 +166,7 @@ const disableButtons = (bool) => {
 };
 
 //Xóa task ở local storage
-const removeTask = (taskValue) => {
+const removeTask = (taskValue, taskContent) => {
     const popup = document.createElement('div');
     popup.id = 'popup';
 
@@ -165,7 +174,7 @@ const removeTask = (taskValue) => {
     confirm_popup.id = 'confirm_popup';
     
     const message = document.createElement('p');
-    message.textContent = 'Bạn có muốn xóa?';
+    message.textContent = `Bạn có muốn xóa "${taskContent.textContent}" không?`;
     confirm_popup.appendChild(message);
     
     const yesButton = document.createElement('button');
@@ -207,15 +216,12 @@ const updateStorage = (index, taskValue, completed) => {
 document.querySelector("#push").addEventListener("click", () => {
     //Hiện thị nút chỉnh sửa
     disableButtons(false);
-    if (newTaskInput.value.length == 0) {
+    if (newTaskInput.value.trim() === '') {
         alert("Vui lòng nhập công việc");
     } else {
-    if (updateNote == "") {
-        //Thêm task mới
-        updateStorage(count, newTaskInput.value, false);
-    }
-    count += 1;
-    newTaskInput.value = "";
+        updateStorage(count, newTaskInput.value.trim(), false);
+        count += 1;
+        newTaskInput.value = "";
     }
 });
 
