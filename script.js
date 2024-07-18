@@ -94,8 +94,7 @@ const displayTasks = () => {
                 if (event.key === 'Enter') {
                     if (inputElement.value.trim() === '') {
                         alert("Vui lòng nhập công việc");
-                        inputElement.focus();
-                        // updateStorage(element.parentElement.id, textEdit, false);
+                        updateStorage(element.parentElement.id, textEdit, false);
                     } else {
                         updateStorage(element.parentElement.id, inputElement.value.trim(), false);
                     }
@@ -104,8 +103,7 @@ const displayTasks = () => {
             element.addEventListener('click', function() {
                 if (inputElement.value.trim() === '') {
                     alert("Vui lòng nhập công việc");
-                    inputElement.focus();
-                    // updateStorage(element.parentElement.id, textEdit, false);
+                    updateStorage(element.parentElement.id, textEdit, false);
                 } else {
                     updateStorage(element.parentElement.id, inputElement.value.trim(), false);
                 }
