@@ -108,6 +108,11 @@ const displayTasks = () => {
                     updateStorage(element.parentElement.id, inputElement.value.trim(), false);
                 }
             });
+            inputElement.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    updateStorage(element.parentElement.id, textEdit, false);
+                }
+            });
             // inputElement.addEventListener('blur', function() {
             //     if (inputElement.value.length ==0) {
             //         alert("Vui lòng nhập công việc");
