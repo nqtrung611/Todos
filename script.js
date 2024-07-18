@@ -108,14 +108,15 @@ const displayTasks = () => {
                     updateStorage(element.parentElement.id, inputElement.value.trim(), false);
                 }
             });
-            // inputElement.addEventListener('blur', function() {
-            //     if (inputElement.value.length ==0) {
-            //         alert("Vui lòng nhập công việc");
-            //         updateStorage(element.parentElement.id, textEdit, false);
-            //     } else {
-            //         updateStorage(element.parentElement.id, inputElement.value, false);
-            //     }
-            // });
+            inputElement.addEventListener('blur', function() {
+                // if (inputElement.value.length ==0) {
+                //     alert("Vui lòng nhập công việc");
+                //     updateStorage(element.parentElement.id, textEdit, false);
+                // } else {
+                //     updateStorage(element.parentElement.id, inputElement.value, false);
+                // }
+                updateStorage(element.parentElement.id, textEdit, false);
+            });
         });
     });
 
